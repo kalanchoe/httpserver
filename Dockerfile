@@ -1,5 +1,6 @@
-FROM golang:1.16-alpine AS build
+FROM golang:alpine AS build
 
+RUN mkdir "/go/src/httpserver"
 COPY go.mod /go/src/httpserver
 WORKDIR /go/src/httpserver
 RUN go mod download
@@ -9,4 +10,4 @@ RUN go build -o /bin/httpserver
 
 FROM alpine
 COPY --from=build /bin/httpserver /bin/httpserver
-ENTRYPOINT["/bin/httpserver"]
+CMD /bin/httpserver
