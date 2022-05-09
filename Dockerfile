@@ -10,4 +10,4 @@ RUN go build -o /bin/httpserver
 
 FROM alpine
 COPY --from=build /bin/httpserver /bin/httpserver
-CMD /bin/httpserver
+ENTRYPOINT /bin/httpserver
